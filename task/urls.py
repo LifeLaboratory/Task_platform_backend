@@ -28,6 +28,6 @@ urlpatterns = [
     path('team/edit/', EditTeam().edit),
     path('add_task/', AddTask().add_task),
     path('auth/', Auth.get_session),
-    path('registration/', RegiUser.registation),
-    path('event_registration_team/', RegiOnEvent.registation)
+    path('registration/user', RegiUser.registation),
+    path('event/registration/team/', RegiOnEvent.registation)
 ]
