@@ -20,6 +20,6 @@ from task_lesson.api.team.create import CreateTeam
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('team/', CreateTeam().create)
+    path('team/', CreateTeam().create),
     path('add_task/', AddTask().add_task),
 ]
