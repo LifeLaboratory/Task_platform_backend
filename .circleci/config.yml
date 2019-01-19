@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build_and_test:
+    docker:
+      - image: circleci/node:11.1.0
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-frontend-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
+          - v1-dependencies-frontend-{{ checksum "package.json" }}-
+          - v1-dependencies-frontend-
+
+      - run:
+          name: NPM install for frontend module
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-frontend-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
+  deploy:
+    docker:
+      - image: circleci/node:11.1.0
+
+    working_directory: ~/repo
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "2f:fc:61:7b:d4:b0:86:22:e4:71:8c:df:23:71:19:ce"
+      - run:
+          name: Keyscan deploy server
+          command: ssh-keyscan -p 1234 -H $DEPLOY_SERVER >> ~/.ssh/known_hosts
+
+      - run:
+          name: Deploy
+          command: |
+            ssh -p 1234 life@$DEPLOY_SERVER 'cd ~/task_platform && source ENV && cd Task_platform_backend && git pull && docker-compose up -d --build'
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              only:
+                - master
+
