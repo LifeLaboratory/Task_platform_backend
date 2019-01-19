@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task_lesson.api.task.task import AddTask
+from task_lesson.api.task.create_task import CreateTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
+from task_lesson.api.task.view_task import ViewTask
 from task_lesson.api.authorization.get_session import Authorization as Auth
 from task_lesson.api.registration.registration_user import RegistrationUser as RegiUser
 from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as RegiOnEvent
@@ -26,7 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('team/create/', CreateTeam().create),
     path('team/edit/', EditTeam().edit),
-    path('add_task/', AddTask().add_task),
+    path('task/create/', CreateTask().create_task),
+    path('task/view/', ViewTask().view_task),
     path('auth/', Auth.get_session),
     path('registration/user', RegiUser.registation),
     path('event/registration/team/', RegiOnEvent.registation)
