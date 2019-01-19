@@ -35,19 +35,19 @@ class TestTakeSession(ut.TestCase):
             'login': 'test_andrew',
             'password': 'test_andrew'
         }
-        r = requests.post('http://127.0.0.1:8000/auth/', data=data)
+        r = requests.post('http://127.0.0.1:8000/auth/', data=json.dumps(data))
 
 
         return
 
     def test_registration(self):
         data = {
-            'name': 'kaka_andrew' + str(random.random()),
-            'login': 'rot_s_milom' + str(random.random()),
-            'password': 'pomoi',
+            'name': 'koderast' + str(random.random()),
+            'login': 'sibir' + str(random.random()),
+            'password': 'kotiki',
             'email': 'silence@gold.com',
         }
-        r = requests.post('http://127.0.0.1:8000/registration/', data=data)
+        r = requests.post('http://127.0.0.1:8000/registration/', data=json.dumps(data))
 
 
         return
