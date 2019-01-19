@@ -7,10 +7,11 @@ class TestCreateTeam(unittest.TestCase):
 
     def test_create(self):
         test_data = {
-            'name': 'test7',
+            'team': 1,
+            'name': 'test88',
             'pictureurl': 'http'
         }
 
-        data = requests.post('http://127.0.0.1:8000/team/create/', data=test_data)
-
+        data = requests.post('http://127.0.0.1:8000/team/edit/', data=test_data)
+        print(data.text)
         self.assertIsNone(json.loads(data.text).get('answer'))

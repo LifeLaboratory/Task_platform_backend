@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task_lesson.api.team.create import CreateTeam
+from task_lesson.api.team.edit import EditTeam
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('team/', CreateTeam().create)
+    path('team/create/', CreateTeam().create),
+    path('team/edit/', EditTeam().edit)
 ]
