@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'task_platform',
         'USER': 'ARM',
         'PASSWORD': '',
-        'HOST': '192.168.1.3',
+        'HOST': os.environ.get('DATABASE_HOST', ''),
         'PORT': '5432',
     }
 }
@@ -89,7 +89,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.1.3:6379/1",
+        "LOCATION": "redis://%s:6379/1" % os.environ.get('DATABASE_HOST', ''),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": "pinlox123"
