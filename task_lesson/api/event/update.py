@@ -5,8 +5,24 @@ import task_lesson.api.event.helpers as helpers
 class EventUpdate(Event):
     def __init__(self, data):
         super(EventUpdate, self).__init__(data)
+        if self.status == "Ok":
+            self.event_id = self.get_event_id(data)
+            if self.event_id is None:
+                self.status = "Cannot get event id"
+            else:
+                self.permition_is_true = self.check_permition()
+        if self.permition_is_true is not None:
+            self.apply_changes(data)
 
-    def get_event_id(self):
+
+
+    def get_event_id(self, data):
+        return
+
+    def check_permition(self, data):
+        return
+
+    def apply_changes(self, data):
         return
 
 

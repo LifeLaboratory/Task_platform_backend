@@ -5,6 +5,10 @@ import task_lesson.api.event.helpers as helpers
 class EventCreate(Event):
     def __init__(self, data):
         super(EventCreate, self).__init__(data)
+        if self.status == "Ok":
+            self.event_id = self.get_event_id()
+            if self.event_id is None:
+                self.status = "Cannot get event id"
 
     def get_event_id(self):
         return

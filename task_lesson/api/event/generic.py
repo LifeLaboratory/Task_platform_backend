@@ -1,12 +1,11 @@
 
-
 class Event():
     def __init__(self, data):
         if not self.validate_name(data.POST["name"]):
             self.status = "Invalid name"
-        if not self.validate_description(data.POST["desc"]):
+        elif not self.validate_description(data.POST["desc"]):
             self.status = "Invalid description"
-        if not self.validate_picture_url(data.POST["picture_url"]):
+        elif not self.validate_picture_url(data.POST["picture_url"]):
             self.status = "Invalid picture url"
 
         self.name = data.POST["name"]
