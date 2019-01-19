@@ -78,11 +78,22 @@ WSGI_APPLICATION = 'task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ARM',
+        'NAME': 'task_platform',
         'USER': 'ARM',
-        'PASSWORD': 'password',
+        'PASSWORD': '',
         'HOST': '90.189.132.25',
         'PORT': '5432',
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://90.189.132.25:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "mysecret"
+        }
     }
 }
 
