@@ -19,11 +19,13 @@ from task_lesson.api.task.task import AddTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
 from task_lesson.api.authorization.get_session import Authorization as Auth
+from task_lesson.api.registration.registration import Registration as Regi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('team/create/', CreateTeam().create),
     path('team/edit/', EditTeam().edit),
     path('add_task/', AddTask().add_task),
-    path('auth/', Auth.get_session)
+    path('auth/', Auth.get_session),
+    path('registration/', Regi.registation)
 ]

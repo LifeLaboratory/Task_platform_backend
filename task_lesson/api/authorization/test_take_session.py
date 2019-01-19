@@ -6,6 +6,7 @@ import unittest as ut
 # import api.authorization.get_session as gt
 import api.helpers.names as names
 import requests
+import random
 
 from django.test import TestCase
 
@@ -35,6 +36,18 @@ class TestTakeSession(ut.TestCase):
             'password': 'test_andrew'
         }
         r = requests.post('http://127.0.0.1:8000/auth/', data=data)
+
+
+        return
+
+    def test_registration(self):
+        data = {
+            'name': 'kaka_andrew' + str(random.random()),
+            'login': 'rot_s_milom' + str(random.random()),
+            'password': 'pomoi',
+            'email': 'silence@gold.com',
+        }
+        r = requests.post('http://127.0.0.1:8000/registration/', data=data)
 
 
         return
