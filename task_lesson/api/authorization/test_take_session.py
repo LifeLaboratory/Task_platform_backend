@@ -51,3 +51,14 @@ class TestTakeSession(ut.TestCase):
 
 
         return
+
+    def test_registration_on_event(self):
+        data = {
+            'event': 1,
+            'teamuser': 8,
+            'role': 1
+        }
+        r = requests.post('http://127.0.0.1:8000/registration_on_event/', data=json.dumps(data))
+
+
+        return

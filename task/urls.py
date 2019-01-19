@@ -19,7 +19,8 @@ from task_lesson.api.task.task import AddTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
 from task_lesson.api.authorization.get_session import Authorization as Auth
-from task_lesson.api.registration.registration import Registration as Regi
+from task_lesson.api.registration.registration_user import RegistrationUser as RegiUser
+from task_lesson.api.registration.registration_on_event import RegistrationOnEvent as RegiOnEvent
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,6 @@ urlpatterns = [
     path('team/edit/', EditTeam().edit),
     path('add_task/', AddTask().add_task),
     path('auth/', Auth.get_session),
-    path('registration/', Regi.registation)
+    path('registration/', RegiUser.registation),
+    path('registration_on_event/', RegiOnEvent.registation)
 ]
