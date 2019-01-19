@@ -1,0 +1,7 @@
+django-redis
+Django
+SQLAlchemy
+pytz
+redis
+psycopg2
+psycopg2-binary

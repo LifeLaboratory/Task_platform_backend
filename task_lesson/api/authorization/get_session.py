@@ -1,5 +1,5 @@
 import json
-import api.helpers.names as names
+import task_lesson.api.helpers.names as names
 
 from django.core.cache import cache
 from uuid import uuid4
@@ -14,14 +14,12 @@ class Authorization:
     @classmethod
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
-        # return names.RequestValueErorr
         return names.AllGood
 
     @classmethod
     def get_id_user(cls, request):
 
         data = json.loads(request.body.decode('utf-8'))
-        # data = request.POST
         qset = User.objects.filter(login=data['login'], password=data['password'])
         if len(qset):
             answer = None

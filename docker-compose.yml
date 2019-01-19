@@ -1,35 +1,10 @@
-version: '2.1'
+version: '3'
 
 services:
-  auth:
-    restart: always
-    build: auth/
-    volumes:
-      - ./auth/ :/auth/
-    expose:
-      - "13451"
-  quotation:
-    restart: always
-    build: quotation/
-    volumes:
-      - ./quotation/ :/quotation/
-    expose:
-      - "13452"
-  admin:
-    restart: always
-    build: admin/
-    volumes:
-    - ./admin/ :/admin/
-    expose:
-    - "13453"
-  proxy:
+  backend:
     restart: always
     build:
-      context:  ./nginx
-      dockerfile: Dockerfile
+      context: ./
     ports:
-      - "192.168.1.3:80:80"
-    links:
-      - auth
-      - quotation
-      - admin
+      - "7777:8080"
+

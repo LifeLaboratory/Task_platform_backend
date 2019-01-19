@@ -10,7 +10,6 @@ class Registration:
     @classmethod
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
-        # return names.RequestValueErorr
         return names.AllGood
 
     @classmethod
@@ -18,7 +17,6 @@ class Registration:
 
         data = json.loads(request.body.decode('utf-8'))
         answer = None
-        # data = request.POST
         kwargs = {
             'name': data['name'],
             'login': data['login'],
@@ -40,7 +38,7 @@ class Registration:
 
         answer = cls.check_request(request)
 
-        if not answer:
+        if answer == names.AllGood:
             answer = cls.set_user(request)
 
         response = {
