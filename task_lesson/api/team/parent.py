@@ -45,7 +45,7 @@ class Team:
         :param check_param:
         :return:
         """
-        self.data, self.response = check_dict(response.POST, check_param)
+        self.data, self.response = check_dict(response.body.decode('utf-8'), check_param)
 
     def create(self, response):
         """
