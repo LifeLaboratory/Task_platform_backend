@@ -1,3 +1,4 @@
+TASK = 'task'
 TASK_NAME = 'name'
 TASK_CATEGORY = 'category'
 TASK_WEIGHT = 'weight'
@@ -18,6 +19,7 @@ TEAM_DESCRIPTION = 'description'
 TEAM_PICTURE = 'pictureurl'
 TEAM_USER_ID = 'user_id'
 
+
 ADD_TASK_FIELDS = {
     TASK_NAME,
     TASK_CATEGORY,
@@ -31,6 +33,19 @@ EVENT_TASK_FIELDS = {
     EVENT
 }
 
+TASK_FIELDS = {
+    TASK,
+    TASK_NAME,
+    TASK_CATEGORY,
+    TASK_WEIGHT,
+    TASK_DESCRIPTION,
+    USER
+}
+
+VIEW_TASK_FIELDS = {
+    EVENT,
+    TASK_CATEGORY
+}
 
 ADD_TEAM_FIELDS = {
     TEAM_NAME,
@@ -47,6 +62,10 @@ INTEGER_FIELDS = {
     TASK_WEIGHT,
     USER,
     EVENT
+}
+
+STRING_FIELDS = {
+    TASK_CATEGORY
 }
 
 CREATE_EVENT_FIELDS = {
