@@ -19,3 +19,9 @@ INTEGER_FIELDS = {
     TASK_WEIGHT,
     USER
 }
+
+# Ошибки авторизации
+CreateSessionError = 'Не удалось авторизоватся. Повторите попытку позже.'
+RequestValueErorr = 'Получен не корректный запрос на авторизацию'
+LoginError = 'Пользователя с таким логином не существует'
+PasswordError = 'Неверный пароль'
