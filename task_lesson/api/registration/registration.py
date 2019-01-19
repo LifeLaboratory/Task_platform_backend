@@ -1,5 +1,7 @@
 
-from task_lesson.models import User
+import json
+import task_lesson.api.helpers.names as names
+from task_lesson.models import User, TeamUser
 from django.http import HttpResponse
 
 
@@ -9,13 +11,14 @@ class Registration:
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
         # return names.RequestValueErorr
-        return None
+        return names.AllGood
 
     @classmethod
     def set_user(cls, request):
 
+        data = json.loads(request.body.decode('utf-8'))
         answer = None
-        data = request.POST
+        # data = request.POST
         kwargs = {
             'name': data['name'],
             'login': data['login'],
@@ -25,8 +28,10 @@ class Registration:
         try:
             user = User(**kwargs)
             user.save()
+            team_user = TeamUser(**{'user': user})
+            team_user.save()
         except Exception as e:
-            answer = e
+            answer = names.ServerError
 
         return answer
 
@@ -39,12 +44,10 @@ class Registration:
             answer = cls.set_user(request)
 
         response = {
-            'content': answer if answer else None,
-            'status': 500 if answer else 200,
-            'reason': answer if answer else 200
+            names.ANSWER: answer
         }
 
-        return HttpResponse(**response)
+        return HttpResponse(json.dumps(response))
 
 
 

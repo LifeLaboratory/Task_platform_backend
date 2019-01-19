@@ -53,6 +53,9 @@ RequestValueErorr = 'Получен не корректный запрос на 
 LoginError = 'Пользователя с таким логином не существует'
 PasswordError = 'Неверный пароль'
 NameTeamIsNotEmpty = 'Такое название команды уже существует'
+AuthorizationError = 404
+AllGood = 200
+ServerError = 500
 
 TimeOutSession = 6000
 ERROR_ADD_TASK = 'Ошибка добавления таска'

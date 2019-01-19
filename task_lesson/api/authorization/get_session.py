@@ -15,18 +15,19 @@ class Authorization:
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
         # return names.RequestValueErorr
-        return None
+        return names.AllGood
 
     @classmethod
     def get_id_user(cls, request):
 
-        data = request.POST
+        data = json.loads(request.body.decode('utf-8'))
+        # data = request.POST
         qset = User.objects.filter(login=data['login'], password=data['password'])
         if len(qset):
             answer = None
             user_id = qset[0].user
         else:
-            answer = names.CreateSessionError
+            answer = names.AuthorizationError
             user_id = None
         return {
             names.ANSWER: answer,
@@ -45,14 +46,14 @@ class Authorization:
 
         session = None
         answer = cls.check_request(request)
-        if not answer:
+        if answer == names.AllGood:
 
             user_dict = cls.get_id_user(request)
             user_id = user_dict[names.USER]
             if user_id:
                 session = cls.take_session(user_id)
                 if not session:
-                    answer = names.CreateSessionError
+                    answer = names.ServerError
             else:
                 answer = user_dict[names.ANSWER]
 
