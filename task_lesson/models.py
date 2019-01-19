@@ -78,10 +78,12 @@ class EventSponsor(models.Model):
 
 class Hint(models.Model):
     hint = models.IntegerField(primary_key=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    description = models.CharField(max_length=2048)
 
 
 class Solution(models.Model):
     solution = models.IntegerField(primary_key=True)
     teamuser = models.ForeignKey(TeamUser, on_delete=models.CASCADE)
     eventtask = models.ForeignKey(EventTask, on_delete=models.CASCADE)
+    status = models.BooleanField()
