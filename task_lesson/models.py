@@ -4,86 +4,86 @@ from django.db import models
 
 
 class User(models.Model):
-    user = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
-    login = models.CharField(max_length=128)
-    password = models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
+    user = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, default='', null=False)
+    login = models.TextField(max_length=128, default='', null=False)
+    password = models.TextField(max_length=128, default='', null=False)
+    email = models.TextField(max_length=128, default='', null=False)
 
     def __str__(self):
         return self.user
 
 
 class Role(models.Model):
-    role = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
+    role = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, default='', null=False)
 
 
 class Team(models.Model):
-    team = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
+    team = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    pictureurl = models.CharField(max_length=128)
+    pictureurl = models.TextField(max_length=128, default='', null=False)
 
 
 class TeamUser(models.Model):
-    teamuser = models.IntegerField(primary_key=True)
+    teamuser = models.AutoField(primary_key=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    role = models.BooleanField(default=None)
+    role = models.BooleanField(default=None, null=False)
 
 
 class Event(models.Model):
-    event = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
-    pictureurl = models.CharField(max_length=128)
-    description = models.CharField(max_length=10000)
+    event = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, default='', null=False)
+    pictureurl = models.TextField(max_length=128, default='', null=False)
+    description = models.TextField(max_length=10000, default='', null=False)
 
 
 class EventTeamUser(models.Model):
-    eventteamuser = models.IntegerField(primary_key=True)
+    eventteamuser = models.AutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     teamuser = models.ForeignKey(TeamUser, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
 
 class Task(models.Model):
-    task = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
-    category = models.CharField(max_length=128)
-    weight = models.FloatField(max_length=128)
-    flag = models.CharField(max_length=128)
-    description = models.CharField(max_length=10000)
+    task = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, default='', null=False)
+    category = models.TextField(max_length=128, default='', null=False)
+    weight = models.FloatField(max_length=128, default=0.0, null=False)
+    flag = models.TextField(max_length=128, default='', null=False)
+    description = models.TextField(max_length=10000, default='', null=False)
     # Автор задания
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class EventTask(models.Model):
-    eventtask = models.IntegerField(primary_key=True)
+    eventtask = models.AutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 
 
 class Sponsor(models.Model):
-    sponsor = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=128)
-    pictureurl = models.CharField(max_length=128)
+    sponsor = models.AutoField(primary_key=True)
+    name = models.TextField(max_length=128, null=False)
+    pictureurl = models.TextField(max_length=128, default='', null=False)
 
 
 class EventSponsor(models.Model):
-    eventsponsor = models.IntegerField(primary_key=True)
+    eventsponsor = models.AutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE)
 
 
 class Hint(models.Model):
-    hint = models.IntegerField(primary_key=True)
+    hint = models.AutoField(primary_key=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    description = models.CharField(max_length=2048)
+    description = models.TextField(max_length=2048, default='', null=False)
 
 
 class Solution(models.Model):
-    solution = models.IntegerField(primary_key=True)
+    solution = models.AutoField(primary_key=True)
     teamuser = models.ForeignKey(TeamUser, on_delete=models.CASCADE)
     eventtask = models.ForeignKey(EventTask, on_delete=models.CASCADE)
-    status = models.BooleanField()
+    status = models.BooleanField(default=None, null=False)
