@@ -1,5 +1,5 @@
 import json
-import api.helpers.names as names
+import task_lesson.api.helpers.names as names
 
 from django.core.cache import cache
 from uuid import uuid4
