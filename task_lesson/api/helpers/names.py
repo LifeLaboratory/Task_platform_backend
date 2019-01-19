@@ -64,6 +64,9 @@ NameTeamIsNotEmpty = 'Такое название команды уже суще
 EventNameError = 'Получено некорректное имя события'
 EventDescriptionError = 'Получено некорректное описание события'
 EventPictureUrlError = 'Получен некорректный URL картинки'
+AuthorizationError = 404
+AllGood = 200
+ServerError = 500
 
 TimeOutSession = 6000
 ERROR_ADD_TASK = 'Ошибка добавления таска'
