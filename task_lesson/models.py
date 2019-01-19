@@ -5,10 +5,10 @@ from django.db import models
 
 class User(models.Model):
     user = models.IntegerField(primary_key=True)
-    name = models.CharField()
-    login = models.CharField()
-    password = models.CharField()
-    email = models.CharField()
+    name = models.CharField(max_length=128)
+    login = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
 
     def __str__(self):
         return self.user
@@ -16,14 +16,14 @@ class User(models.Model):
 
 class Role(models.Model):
     role = models.IntegerField(primary_key=True)
-    name = models.CharField()
+    name = models.CharField(max_length=128)
 
 
 class Team(models.Model):
     team = models.IntegerField(primary_key=True)
-    name = models.CharField()
+    name = models.CharField(max_length=128)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    pictureurl = models.CharField()
+    pictureurl = models.CharField(max_length=128)
 
 
 class TeamUser(models.Model):
@@ -35,9 +35,9 @@ class TeamUser(models.Model):
 
 class Event(models.Model):
     event = models.IntegerField(primary_key=True)
-    name = models.CharField()
-    pictureurl = models.CharField()
-    description = models.CharField()
+    name = models.CharField(max_length=128)
+    pictureurl = models.CharField(max_length=128)
+    description = models.CharField(max_length=10000)
 
 
 class EventTeamUser(models.Model):
@@ -49,11 +49,11 @@ class EventTeamUser(models.Model):
 
 class Task(models.Model):
     task = models.IntegerField(primary_key=True)
-    name = models.CharField()
-    category = models.CharField()
-    weight = models.FloatField()
-    flag = models.CharField()
-    description = models.CharField()
+    name = models.CharField(max_length=128)
+    category = models.CharField(max_length=128)
+    weight = models.FloatField(max_length=128)
+    flag = models.CharField(max_length=128)
+    description = models.CharField(max_length=10000)
     # Автор задания
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -66,8 +66,8 @@ class EventTask(models.Model):
 
 class Sponsor(models.Model):
     sponsor = models.IntegerField(primary_key=True)
-    name = models.CharField()
-    pictureurl = models.CharField()
+    name = models.CharField(max_length=128)
+    pictureurl = models.CharField(max_length=128)
 
 
 class EventSponsor(models.Model):
