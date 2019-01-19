@@ -4,6 +4,7 @@ TASK_WEIGHT = 'weight'
 TASK_FLAG = 'flag'
 TASK_DESCRIPTION = 'description'
 TASK_AUTHOR = 'author'
+EVENT = 'event'
 USER = 'user_id'
 ANSWER = 'answer'
 SESSION = 'session'
@@ -23,6 +24,11 @@ ADD_TASK_FIELDS = {
     USER
 }
 
+EVENT_TASK_FIELDS = {
+    EVENT
+}
+
+
 ADD_TEAM_FIELDS = {
     TEAM_NAME,
     TEAM_PICTURE
@@ -30,7 +36,8 @@ ADD_TEAM_FIELDS = {
 
 INTEGER_FIELDS = {
     TASK_WEIGHT,
-    USER
+    USER,
+    EVENT
 }
 
 # Ошибки авторизации
@@ -42,3 +49,6 @@ PasswordError = 'Неверный пароль'
 NameTeamIsNotEmpty = 'Такое название команды уже существует'
 
 TimeOutSession = 6000
+ERROR_ADD_TASK = 'Ошибка добавления таска'
+ERROR_REQUEST_DATABASE = 'Ошибка запроса к бд'
+OK = 'OK'
