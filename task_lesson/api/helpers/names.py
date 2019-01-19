@@ -8,6 +8,9 @@ EVENT = 'event'
 USER = 'user_id'
 ANSWER = 'answer'
 SESSION = 'session'
+EVENT_NAME = 'name'
+EVENT_DESC = 'desc'
+EVENT_PICTURE_URL = 'picture_url'
 
 TEAM_ID = 'team'
 TEAM_NAME = 'name'
@@ -46,6 +49,11 @@ INTEGER_FIELDS = {
     EVENT
 }
 
+CREATE_EVENT_FIELDS = {
+    EVENT_NAME,
+    EVENT_DESC,
+    EVENT_PICTURE_URL
+}
 # Ошибки авторизации
 answer = 'answer'
 CreateSessionError = 'Не удалось авторизоватся. Повторите попытку позже.'
@@ -53,6 +61,9 @@ RequestValueErorr = 'Получен не корректный запрос на 
 LoginError = 'Пользователя с таким логином не существует'
 PasswordError = 'Неверный пароль'
 NameTeamIsNotEmpty = 'Такое название команды уже существует'
+EventNameError = 'Получено некорректное имя события'
+EventDescriptionError = 'Получено некорректное описание события'
+EventPictureUrlError = 'Получен некорректный URL картинки'
 
 TimeOutSession = 6000
 ERROR_ADD_TASK = 'Ошибка добавления таска'
