@@ -47,7 +47,18 @@ class TestTakeSession(ut.TestCase):
             'password': 'kotiki',
             'email': 'silence@gold.com',
         }
-        r = requests.post('http://127.0.0.1:8000/registration/', data=json.dumps(data))
+        r = requests.post('http://127.0.0.1:8000/registration/user/', data=json.dumps(data))
+
+
+        return
+
+    def test_registration_on_event(self):
+        data = {
+            'event': 1,
+            'teamuser': 8,
+            'role': 1
+        }
+        r = requests.post('http://127.0.0.1:8000/event/registration/team/', data=json.dumps(data))
 
 
         return
