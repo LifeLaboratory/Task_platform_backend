@@ -24,7 +24,7 @@ class TestTakeSession(ut.TestCase):
             'password': 'roman123'
         }
         # js_d = json.dumps(data)
-        r = requests.post('http://127.0.0.1:8000/auth/', data=data)
+        r = requests.post('http://127.0.0.1:8000/api/auth/', data=data)
 
         # _uuid = gt.Authorization.take_session(self.user_id)
         # self.assertIsInstance(_uuid, str, 'Некорректный тип сессии')
@@ -35,7 +35,7 @@ class TestTakeSession(ut.TestCase):
             'login': 'test_andrew',
             'password': 'test_andrew'
         }
-        r = requests.post('http://127.0.0.1:8000/auth/', data=json.dumps(data))
+        r = requests.post('http://127.0.0.1:8000/api/auth/', data=json.dumps(data))
 
 
         return
@@ -47,7 +47,7 @@ class TestTakeSession(ut.TestCase):
             'password': 'kotiki',
             'email': 'silence@gold.com',
         }
-        r = requests.post('http://127.0.0.1:8000/registration/user/', data=json.dumps(data))
+        r = requests.post('http://127.0.0.1:8000/api/registration/user/', data=json.dumps(data))
 
 
         return
@@ -58,7 +58,7 @@ class TestTakeSession(ut.TestCase):
             'teamuser': 8,
             'role': 1
         }
-        r = requests.post('http://127.0.0.1:8000/event/registration/team/', data=json.dumps(data))
+        r = requests.post('http://127.0.0.1:8000/api/event/registration/team/', data=json.dumps(data))
 
 
         return

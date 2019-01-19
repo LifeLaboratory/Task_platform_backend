@@ -25,11 +25,11 @@ from task_lesson.api.registration.event_registration_team import EventRegistrati
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('team/create/', CreateTeam().create),
-    path('team/edit/', EditTeam().edit),
-    path('task/create/', CreateTask().create_task),
-    path('task/view/', ViewTask().view_task),
-    path('auth/', Auth.get_session),
-    path('registration/user', RegiUser.registation),
-    path('event/registration/team/', RegiOnEvent.registation)
+    path('api/team/create/', CreateTeam().create),
+    path('api/team/edit/', EditTeam().edit),
+    path('api/task/create/', CreateTask().create_task),
+    path('api/task/view/', ViewTask().view_task),
+    path('api/auth/', Auth.get_session),
+    path('api/registration/user', RegiUser.registation),
+    path('api/event/registration/team/', RegiOnEvent.registation)
 ]
