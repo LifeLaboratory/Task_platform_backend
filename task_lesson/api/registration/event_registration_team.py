@@ -5,7 +5,7 @@ from task_lesson.models import TeamUser, Role, Event, EventTeamUser
 from django.http import HttpResponse
 
 
-class RegistrationOnEvent:
+class EventRegistrationTeam:
 
     @classmethod
     def check_request(cls, request):

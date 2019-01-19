@@ -58,7 +58,7 @@ class TestTakeSession(ut.TestCase):
             'teamuser': 8,
             'role': 1
         }
-        r = requests.post('http://127.0.0.1:8000/registration_on_event/', data=json.dumps(data))
+        r = requests.post('http://127.0.0.1:8000/event_registration_team/', data=json.dumps(data))
 
 
         return
