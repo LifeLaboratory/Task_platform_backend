@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-f(s4kfa2hr*5(*i52t=6uv*vsxoo70kxcsopl5$=6r5645#-&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -92,7 +92,7 @@ CACHES = {
         "LOCATION": "redis://90.189.132.25:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "PASSWORD": "mysecret"
+            "PASSWORD": "pinlox123"
         }
     }
 }
