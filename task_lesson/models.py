@@ -35,7 +35,7 @@ class Event(models.Model):
     name = models.TextField(max_length=128, default='', null=False)
     pictureurl = models.TextField(max_length=128, default='', null=False)
     description = models.TextField(max_length=10000, default='', null=False)
-
+    status = models.BooleanField(default=False, null=True)
 
 class EventTeamUser(models.Model):
     eventteamuser = models.AutoField(primary_key=True)
@@ -84,3 +84,4 @@ class Solution(models.Model):
     teamuser = models.ForeignKey(TeamUser, on_delete=models.CASCADE)
     eventtask = models.ForeignKey(EventTask, on_delete=models.CASCADE)
     status = models.BooleanField(default=None, null=False)
+    date = models.TimeField(default=None, null=False)
