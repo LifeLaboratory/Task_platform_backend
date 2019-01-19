@@ -92,7 +92,7 @@ CACHES = {
         "LOCATION": "redis://90.189.132.25:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "PASSWORD": "mysecret"
+            "PASSWORD": "pinlox123"
         }
     }
 }

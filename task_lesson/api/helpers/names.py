@@ -5,6 +5,8 @@ TASK_FLAG = 'flag'
 TASK_DESCRIPTION = 'description'
 TASK_AUTHOR = 'author'
 USER = 'user_id'
+ANSWER = 'answer'
+SESSION = 'session'
 
 ADD_TASK_FIELDS = {
     TASK_NAME,
@@ -25,3 +27,5 @@ CreateSessionError = 'Не удалось авторизоватся. Повто
 RequestValueErorr = 'Получен не корректный запрос на авторизацию'
 LoginError = 'Пользователя с таким логином не существует'
 PasswordError = 'Неверный пароль'
+
+TimeOutSession = 6000
