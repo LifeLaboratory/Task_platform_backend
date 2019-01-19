@@ -16,7 +16,7 @@ jobs:
 
       - run:
           name: PIP install for backend module
-          command: pip install -r requirements.txt
+          command: sudo pip install -r requirements.txt
 
       - save_cache:
           paths:
