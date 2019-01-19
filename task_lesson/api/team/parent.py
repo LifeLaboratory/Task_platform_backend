@@ -1,5 +1,6 @@
 import task_lesson.api.helpers.names as names
 import task_lesson.models as model
+import json
 from task_lesson.api.helpers.checkers import check_dict
 
 
@@ -45,7 +46,7 @@ class Team:
         :param check_param:
         :return:
         """
-        self.data, self.response = check_dict(response.POST, check_param)
+        self.data, self.response = check_dict(json.loads(response.body.decode('utf-8')), check_param)
 
     def create(self, response):
         """
