@@ -18,10 +18,12 @@ from django.urls import path
 from task_lesson.api.task.task import AddTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
+from task_lesson.api.authorization.get_session import Authorization as Auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('team/create/', CreateTeam().create),
     path('team/edit/', EditTeam().edit),
     path('add_task/', AddTask().add_task),
+    path('auth/', Auth.get_session)
 ]

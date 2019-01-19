@@ -1,9 +1,13 @@
 
 
-import unittest as ut
 import json
+import unittest as ut
 import api.authorization.get_session as gt
 import api.helpers.names as names
+import requests
+
+# from django.test import TestCase
+
 
 class TestGetSession(ut.TestCase):
 
@@ -95,3 +99,15 @@ class TestGetSession(ut.TestCase):
             names.SESSION: None
         }
         self.assertEqual(reference, dict_r, 'Неожиданный реультат')
+
+    def test_auth(self):
+        data = {
+            'login': 'test_andrew',
+            'password': 'test_andrew'
+        }
+        # js_d = json.dumps(data)
+        r = requests.post('http://127.0.0.1:8000/auth/', data=data)
+
+        # _uuid = gt.Authorization.take_session(self.user_id)
+        # self.assertIsInstance(_uuid, str, 'Некорректный тип сессии')
+        return

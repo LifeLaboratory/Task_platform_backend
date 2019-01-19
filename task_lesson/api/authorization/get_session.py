@@ -1,14 +1,12 @@
-
-
-__author__= 'rv.fomichev'
-
 import json
-import redis
-import django_redis
 import api.helpers.names as names
 
 from django.core.cache import cache
 from uuid import uuid4
+from task_lesson.models import User
+from django.http import HttpResponse
+
+__author__ = 'rv.fomichev'
 
 
 class Authorization:
@@ -16,14 +14,23 @@ class Authorization:
     @classmethod
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
-        return cls.RequestValueErorr
+        # return names.RequestValueErorr
+        return None
 
     @classmethod
     def get_id_user(cls, request):
 
+        data = request.POST
+        qset = User.objects.filter(login=data['login'], password=data['password'])
+        if len(qset):
+            answer = None
+            user_id = qset[0].user
+        else:
+            answer = names.CreateSessionError
+            user_id = None
         return {
-            names.ANSWER: cls.LoginError,
-            names.USER: None
+            names.ANSWER: answer,
+            names.USER: user_id
         }
 
     @classmethod
@@ -54,4 +61,4 @@ class Authorization:
             names.SESSION: session
         }
 
-        return json.dumps(response)
+        return HttpResponse(json.dumps(response))
