@@ -11,18 +11,17 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-frontend-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
-          - v1-dependencies-frontend-{{ checksum "package.json" }}-
-          - v1-dependencies-frontend-
+          - v1-dependencies-backend-{{ checksum "requirements.txt" }}
+          - v1-dependencies-backend-
 
       - run:
-          name: NPM install for frontend module
-          command: npm install
+          name: PIP install for backend module
+          command: pip install -r requirements.txt
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-frontend-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
+          key: v1-dependencies-backend-{{ checksum "requirements.txt" }}
   deploy:
     docker:
       - image: circleci/node:11.1.0
