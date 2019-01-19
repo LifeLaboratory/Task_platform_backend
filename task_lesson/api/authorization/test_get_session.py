@@ -2,7 +2,8 @@
 
 import unittest as ut
 import json
-import task_lesson.authorization.get_session as gt
+import api.authorization.get_session as gt
+import api.helpers.names as names
 
 class TestGetSession(ut.TestCase):
 
@@ -21,14 +22,14 @@ class TestGetSession(ut.TestCase):
         return None
 
     def fix_error_check(self, request):
-        return gt.Authorization.RequestValueErorr
+        return names.RequestValueErorr
 
     def fix_have_not_login(self, request):
-        self.response['answer'] = gt.Authorization.LoginError
+        self.response['answer'] = names.LoginError
         return self.response
 
     def fix_have_not_password(self, request):
-        self.response['answer'] = gt.Authorization.PasswordError
+        self.response['answer'] = names.PasswordError
         return self.response
 
     def fix_have_id_user(self, request):
@@ -41,7 +42,7 @@ class TestGetSession(ut.TestCase):
     def test_error_login(self):
 
         request = ''
-        answer = gt.Authorization.LoginError
+        answer = names.LoginError
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_not_login
         response = gt.Authorization.get_session(request)
@@ -55,7 +56,7 @@ class TestGetSession(ut.TestCase):
 
     def test_error_password(self):
 
-        answer = gt.Authorization.PasswordError
+        answer = names.PasswordError
         request = ''
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_not_password
@@ -70,7 +71,7 @@ class TestGetSession(ut.TestCase):
 
     def test_error_request(self):
 
-        answer = gt.Authorization.RequestValueErorr
+        answer = names.RequestValueErorr
         request = ''
         gt.Authorization.check_request = self.fix_error_check
         response = gt.Authorization.get_session(request)
@@ -84,7 +85,7 @@ class TestGetSession(ut.TestCase):
 
     def test_error_create_session(self):
 
-        answer = gt.Authorization.CreateSessionError
+        answer = names.CreateSessionError
         request = ''
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_id_user

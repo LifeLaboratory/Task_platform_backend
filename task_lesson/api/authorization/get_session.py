@@ -5,6 +5,7 @@ __author__= 'rv.fomichev'
 import json
 import redis
 import django_redis
+import api.helpers.names as names
 
 from django.core.cache import cache
 from uuid import uuid4
@@ -12,12 +13,6 @@ from uuid import uuid4
 # str(uuid4())
 
 class Authorization:
-
-
-    CreateSessionError = 'Не удалось авторизоватся. Повторите попытку позже.'
-    RequestValueErorr = 'Получен не корректный запрос на авторизацию'
-    LoginError = 'Пользователя с таким логином не существует'
-    PasswordError = 'Неверный пароль'
 
     @classmethod
     def check_request(cls, request):
@@ -49,7 +44,7 @@ class Authorization:
             if user_id:
                 session = cls.take_session(user_id)
                 if not session:
-                    answer = cls.CreateSessionError
+                    answer = names.CreateSessionError
             else:
                 answer = user_dict['answer']
 
