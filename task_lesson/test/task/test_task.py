@@ -14,5 +14,12 @@ class TestTask(unittest.TestCase):
             names.USER: 1,
             names.EVENT: 1
         }
-        r = requests.post('http://127.0.0.1:8000/add_task/', data=data)
+        r = requests.post('http://127.0.0.1:8000/task/create/', json=data)
+        pass
+
+    def test_view_task(self):
+        data = {
+            names.EVENT: 1
+        }
+        r = requests.post('http://127.0.0.1:8000/task/view/', json=data)
         pass
