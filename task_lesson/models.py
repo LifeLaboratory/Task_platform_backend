@@ -10,9 +10,6 @@ class User(models.Model):
     password = models.TextField(max_length=128, default='', null=False)
     email = models.TextField(max_length=128, default='', null=False)
 
-    def __str__(self):
-        return self.user
-
 
 class Role(models.Model):
     role = models.AutoField(primary_key=True)
