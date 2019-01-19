@@ -16,7 +16,7 @@ class Registration:
     def set_user(cls, request):
 
         data = json.loads(request.body.decode('utf-8'))
-        answer = None
+        answer = names.AllGood
         kwargs = {
             'name': data['name'],
             'login': data['login'],
