@@ -5,6 +5,8 @@ TASK_FLAG = 'flag'
 TASK_DESCRIPTION = 'description'
 TASK_AUTHOR = 'author'
 USER = 'user_id'
+ANSWER = 'answer'
+SESSION = 'session'
 
 TEAM_ID = 'team'
 TEAM_NAME = 'name'
@@ -38,3 +40,5 @@ RequestValueErorr = 'Получен не корректный запрос на 
 LoginError = 'Пользователя с таким логином не существует'
 PasswordError = 'Неверный пароль'
 NameTeamIsNotEmpty = 'Такое название команды уже существует'
+
+TimeOutSession = 6000

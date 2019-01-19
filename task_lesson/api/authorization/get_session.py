@@ -10,7 +10,6 @@ import api.helpers.names as names
 from django.core.cache import cache
 from uuid import uuid4
 
-# str(uuid4())
 
 class Authorization:
 
@@ -23,14 +22,16 @@ class Authorization:
     def get_id_user(cls, request):
 
         return {
-            'answer': cls.LoginError,
-            'user_id': None
+            names.ANSWER: cls.LoginError,
+            names.USER: None
         }
 
     @classmethod
     def take_session(cls, user_id):
-
-        return
+        """Установка сессии для юзера"""
+        _uuid = str(uuid4())
+        cache.set(_uuid, user_id, timeout=names.TimeOutSession)
+        return _uuid
 
     @classmethod
     def get_session(cls, request):
@@ -40,17 +41,17 @@ class Authorization:
         if not answer:
 
             user_dict = cls.get_id_user(request)
-            user_id = user_dict['user_id']
+            user_id = user_dict[names.USER]
             if user_id:
                 session = cls.take_session(user_id)
                 if not session:
                     answer = names.CreateSessionError
             else:
-                answer = user_dict['answer']
+                answer = user_dict[names.ANSWER]
 
         response = {
-            'answer': answer,
-            'session': session
+            names.ANSWER: answer,
+            names.SESSION: session
         }
 
         return json.dumps(response)

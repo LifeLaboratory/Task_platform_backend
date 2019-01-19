@@ -7,15 +7,12 @@ import api.helpers.names as names
 
 class TestGetSession(ut.TestCase):
 
-    class Dymmy:
-        pass
-
     def setUp(self):
 
         self.response = {
-            'answer': None,
-            'session': None,
-            'user_id': None
+            names.ANSWER: None,
+            names.SESSION: None,
+            names.USER: None
         }
 
     def fix_good_check(self, request):
@@ -25,15 +22,15 @@ class TestGetSession(ut.TestCase):
         return names.RequestValueErorr
 
     def fix_have_not_login(self, request):
-        self.response['answer'] = names.LoginError
+        self.response[names.ANSWER] = names.LoginError
         return self.response
 
     def fix_have_not_password(self, request):
-        self.response['answer'] = names.PasswordError
+        self.response[names.ANSWER] = names.PasswordError
         return self.response
 
     def fix_have_id_user(self, request):
-        self.response['user_id'] = 1
+        self.response[names.USER] = 1
         return self.response
 
     def fix_have_not_take_session(self, user_id):
@@ -49,8 +46,8 @@ class TestGetSession(ut.TestCase):
 
         dict_r = json.loads(response)
         reference = {
-            'answer': answer,
-            'session': None
+            names.ANSWER: answer,
+            names.SESSION: None
         }
         self.assertEqual(reference, dict_r, 'Неожиданный реультат')
 
@@ -64,8 +61,8 @@ class TestGetSession(ut.TestCase):
 
         dict_r = json.loads(response)
         reference = {
-            'answer': answer,
-            'session': None
+            names.ANSWER: answer,
+            names.SESSION: None
         }
         self.assertEqual(reference, dict_r, 'Неожиданный реультат')
 
@@ -78,8 +75,8 @@ class TestGetSession(ut.TestCase):
 
         dict_r = json.loads(response)
         reference = {
-            'answer': answer,
-            'session': None
+            names.ANSWER: answer,
+            names.SESSION: None
         }
         self.assertEqual(reference, dict_r, 'Неожиданный реультат')
 
@@ -94,7 +91,7 @@ class TestGetSession(ut.TestCase):
 
         dict_r = json.loads(response)
         reference = {
-            'answer': answer,
-            'session': None
+            names.ANSWER: answer,
+            names.SESSION: None
         }
         self.assertEqual(reference, dict_r, 'Неожиданный реультат')
