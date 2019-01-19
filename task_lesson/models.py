@@ -25,9 +25,9 @@ class Team(models.Model):
 
 class TeamUser(models.Model):
     teamuser = models.AutoField(primary_key=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=False, default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    role = models.BooleanField(default=None, null=False)
+    role = models.BooleanField(default=None)
 
 
 class Event(models.Model):
