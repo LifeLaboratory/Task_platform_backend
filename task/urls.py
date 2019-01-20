@@ -19,19 +19,22 @@ from task_lesson.api.task.create_task import CreateTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
 from task_lesson.api.task.view_task import ViewTask
+from task_lesson.api.event.show import ShowEvent
 from task_lesson.api.authorization.authorization import Authorization as Auth
 from task_lesson.api.registration.registration_user import RegistrationUser as RegiUser
 from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as EventRegiTeam
 from task_lesson.api.session.session import Session as Session
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('team/create/', CreateTeam().create),
-    path('team/edit/', EditTeam().edit),
-    path('task/create/', CreateTask().create_task),
-    path('task/view/', ViewTask().view_task),
-    path('auth/', Auth.authorization),
-    path('registration/user', RegiUser.registation),
-    path('event/registration/team/', EventRegiTeam.registation),
-    path('get_user_id_by_session/', Session.get_user_id_by_session)
+    path('api/team/create/', CreateTeam().create),
+    path('api/team/edit/', EditTeam().edit),
+    path('api/task/create/', CreateTask().create_task),
+    path('api/task/view/', ViewTask().view_task),
+    path('api/auth/', Auth.authorization),
+    path('api/registration/user', RegiUser.registation),
+    path('api/event/registration/team/', EventRegiTeam.registation),
+    path('api/event/list/', ShowEvent().get_list_event),
+    path('api/get_user_id_by_session/', Session.get_user_id_by_session)
 ]

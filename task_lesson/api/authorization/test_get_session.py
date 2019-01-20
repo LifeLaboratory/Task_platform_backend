@@ -106,7 +106,7 @@ class TestGetSession(ut.TestCase):
             'password': 'test_andrew'
         }
         # js_d = json.dumps(data)
-        r = requests.post('http://127.0.0.1:8000/auth/', data=data)
+        r = requests.post('http://127.0.0.1:8000/api/auth/', data=data)
 
         # _uuid = gt.Authorization.set_session(self.user_id)
         # self.assertIsInstance(_uuid, str, 'Некорректный тип сессии')

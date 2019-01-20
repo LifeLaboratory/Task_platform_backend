@@ -11,6 +11,6 @@ class TestCreateTeam(unittest.TestCase):
             'pictureurl': 'http'
         }
 
-        data = requests.post('http://127.0.0.1:8000/team/create/', data=test_data)
+        data = requests.post('http://127.0.0.1:8000/api/team/create/', data=test_data)
 
         self.assertIsNone(json.loads(data.text).get('answer'))
