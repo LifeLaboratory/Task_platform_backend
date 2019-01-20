@@ -19,9 +19,10 @@ from task_lesson.api.task.create_task import CreateTask
 from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
 from task_lesson.api.task.view_task import ViewTask
-from task_lesson.api.authorization.get_session import Authorization as Auth
+from task_lesson.api.authorization.authorization import Authorization as Auth
 from task_lesson.api.registration.registration_user import RegistrationUser as RegiUser
-from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as RegiOnEvent
+from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as EventRegiTeam
+from task_lesson.api.session.session import Session as Session
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +30,8 @@ urlpatterns = [
     path('team/edit/', EditTeam().edit),
     path('task/create/', CreateTask().create_task),
     path('task/view/', ViewTask().view_task),
-    path('auth/', Auth.get_session),
+    path('auth/', Auth.authorization),
     path('registration/user', RegiUser.registation),
-    path('event/registration/team/', RegiOnEvent.registation)
+    path('event/registration/team/', EventRegiTeam.registation),
+    path('get_user_id_by_session/', Session.get_user_id_by_session)
 ]

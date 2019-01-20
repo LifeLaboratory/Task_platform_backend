@@ -3,7 +3,7 @@
 
 import json
 import unittest as ut
-# import api.authorization.get_session as gt
+# import api.authorization.authorization as gt
 import api.helpers.names as names
 import requests
 import random
@@ -26,7 +26,7 @@ class TestTakeSession(ut.TestCase):
         # js_d = json.dumps(data)
         r = requests.post('http://127.0.0.1:8000/auth/', data=data)
 
-        # _uuid = gt.Authorization.take_session(self.user_id)
+        # _uuid = gt.Authorization.set_session(self.user_id)
         # self.assertIsInstance(_uuid, str, 'Некорректный тип сессии')
         return
 
@@ -59,6 +59,15 @@ class TestTakeSession(ut.TestCase):
             'role': 1
         }
         r = requests.post('http://127.0.0.1:8000/event/registration/team/', data=json.dumps(data))
+
+
+        return
+
+    def test_user_id_by_session(self):
+        data = {
+            'session': 'f8f056b4-44d8-47db-b383-8b4b56667a76'
+        }
+        r = requests.post('http://127.0.0.1:8000/get_user_id_by_session/', data=json.dumps(data))
 
 
         return
