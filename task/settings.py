@@ -25,7 +25,7 @@ SECRET_KEY = '-f(s4kfa2hr*5(*i52t=6uv*vsxoo70kxcsopl5$=6r5645#-&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.211']
 
 
 # Application definition
@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'task_platform',
         'USER': 'ARM',
         'PASSWORD': 'ARM_SYSTEM',
-        'HOST': os.environ.get('DATABASE_HOST', ''),
+        'HOST': "90.189.132.25",
         'PORT': '5432',
     }
 }
@@ -89,7 +89,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://%s:6379/1" % os.environ.get('DATABASE_HOST', ''),
+        "LOCATION": "redis://90.189.132.25",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": "pinlox123"
