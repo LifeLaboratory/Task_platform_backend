@@ -28,7 +28,8 @@ class TestTask(unittest.TestCase):
         data = {
             names.EVENT: 1,
             names.TASK: 27,
-            names.TASK_FLAG: 'CTF{test}'
+            names.TASK_FLAG: 'CTF{test}',
+            names.USER: 1
         }
         r = requests.post('http://127.0.0.1:8000/api/task/pass/', json=data)
         pass

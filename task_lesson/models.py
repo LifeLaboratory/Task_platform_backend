@@ -37,6 +37,7 @@ class Event(models.Model):
     description = models.TextField(max_length=10000, default='', null=False)
     status = models.BooleanField(default=False, null=True)
 
+
 class EventTeamUser(models.Model):
     eventteamuser = models.AutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)

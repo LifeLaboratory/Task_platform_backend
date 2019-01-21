@@ -6,7 +6,7 @@ TASK_FLAG = 'flag'
 TASK_DESCRIPTION = 'description'
 TASK_AUTHOR = 'author'
 EVENT = 'event'
-USER = 'user_id'
+USER = 'user'
 ANSWER = 'answer'
 SESSION = 'session'
 EVENT_NAME = 'name'
@@ -50,7 +50,8 @@ VIEW_TASK_FIELDS = {
 PASS_TASK_FIELDS = {
     EVENT,
     TASK,
-    TASK_FLAG
+    TASK_FLAG,
+    USER
 }
 
 ADD_TEAM_FIELDS = {

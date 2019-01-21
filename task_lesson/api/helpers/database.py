@@ -4,7 +4,7 @@ from task_lesson.models import EventTask
 from task_lesson.models import EventTeamUser
 
 
-def get_team_user(user, team):
+def get_team_user(user):
     """
     Функция получает teamuser по user и team
     :param user:
@@ -12,11 +12,25 @@ def get_team_user(user, team):
     :return:
     """
     try:
-        teamuser = TeamUser.objects.filter(user=user, team=team)
-        return teamuser
+        team_user = TeamUser.objects.filter(user=user)
+        return team_user
     except TeamUser.DoesNotExist:
         print("TeamUser not found")
         return None
+
+
+def get_personal_team_user(user):
+    """
+    Функция получает teamuser с team = Null
+    :param user:
+    :param team:
+    :return:
+    """
+    list_team_user = get_team_user(user)
+    for tu in list_team_user:
+        if tu.team is None:
+            return tu.teamuser
+    return None
 
 
 def get_event_task(event, task):
@@ -27,7 +41,7 @@ def get_event_task(event, task):
     :return:
     """
     try:
-        event_task = EventTask.objects.get(event=event, task=task)
+        event_task = EventTask.objects.get(event=event, task=task).eventtask
         return event_task
     except EventTask.DoesNotExist:
         print("EventTask not found")
@@ -46,7 +60,9 @@ def get_event_team_user(event, team_user):
         return event_team_user
     except EventTeamUser.DoesNotExist:
         print("EventTeamUser not found")
-        return None
+        event_team_user = EventTeamUser
+        event_team_user.eventteamuser = None
+        return event_team_user
 
 
 def get_event_sponsor(event, sponsor):
@@ -61,4 +77,6 @@ def get_event_sponsor(event, sponsor):
         return event_sponsor
     except EventSponsor.DoesNotExist:
         print("EventTeamUser not found")
-        return None
+        event_sponsor = EventSponsor
+        event_sponsor.eventsponsor = None
+        return event_sponsor

@@ -6,6 +6,7 @@ from task_lesson.api.helpers.checkers import set_types
 from task_lesson.api.task.task import Task
 import json
 from task_lesson.api.helpers.database import *
+from datetime import datetime as dt
 
 
 class PassTask(Task):
@@ -34,9 +35,9 @@ class PassTask(Task):
     @staticmethod
     def insert_solution(data, status):
         event_task = get_event_task(data[names.EVENT], data[names.TASK])
-        team_user = get_team_user(data[names.USER], data[names.EVENT])
+        team_user = get_personal_team_user(data[names.USER])
         if event_task is not None and team_user is not None:
-            event_task = SolutionModel(teamuser=team_user, eventtask=event_task, status=status)
+            event_task = SolutionModel(teamuser_id=team_user, eventtask_id=event_task, status=status, date=dt.now())
             event_task.save()
 
     def pass_task(self, responce):
