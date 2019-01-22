@@ -4,7 +4,7 @@ from task_lesson.models import EventTask
 from task_lesson.models import EventTeamUser
 
 
-def get_team_user(user):
+def get_team_user(user, team):
     """
     Функция получает teamuser по user и team
     :param user:
@@ -12,26 +12,11 @@ def get_team_user(user):
     :return:
     """
     try:
-        team_user = TeamUser.objects.filter(user=user)
+        team_user = TeamUser.objects.filter(user=user, team=team)
         return team_user
     except TeamUser.DoesNotExist:
         print("TeamUser not found")
         return None
-
-
-def get_personal_team_user(user):
-    """
-    Функция получает teamuser с team = Null
-    :param user:
-    :param team:
-    :return:
-    """
-    list_team_user = get_team_user(user)
-    for tu in list_team_user:
-        if tu.team is None:
-            return tu.teamuser
-    return None
-
 
 def get_event_task(event, task):
     """
