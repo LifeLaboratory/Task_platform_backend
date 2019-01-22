@@ -50,8 +50,13 @@ class PassTask(Task):
         :param status:
         :return:
         """
-        event_task = get_event_task(data[names.EVENT], data[names.TASK])
-        team_user = get_team_user(data[names.USER], None)
+        event = data.get(names.EVENT)
+        user = data.get(names.USER)
+        event_task = get_event_task(event, data[names.TASK])
+        if get_status_event(event):
+            team_user = get_team_user_in_event(user, event)
+        else:
+            team_user = get_personal_team_user(user)
         if event_task is not None and team_user is not None:
             event_task = SolutionModel(teamuser_id=team_user, eventtask_id=event_task, status=status, date=dt.now())
             event_task.save()
