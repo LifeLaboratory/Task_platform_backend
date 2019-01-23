@@ -11,34 +11,23 @@ from datetime import datetime as dt
 
 class PassTask(Task):
     @staticmethod
-    def get_flag(data):
+    def check_flag(data):
         """
-        Метод получает флаг по таску и увенту
+        Метод сверяет присланный флаг с флагом из базы данных по заданному таску в событии
         :param data:
         :return:
         """
         try:
             task = TaskModel.objects.get(task=data[names.TASK], eventtask__task=data[names.TASK],
-                                         eventtask__event=data[names.EVENT])
+                                         flag=data[names.TASK_FLAG], eventtask__event=data[names.EVENT])
         except TaskModel.DoesNotExist:
             print("Task not found")
             return
-        return task.flag
-
-    @staticmethod
-    def check_flag(db_flag, user_flag):
-        """
-        Сравнение флага из базы данных и присланного пользователем
-        :param db_flag:
-        :param user_flag:
-        :return:
-        """
-        if db_flag is None:
-            return False, 404
-        if db_flag == user_flag:
+        if task is not None:
             return True, 200
         else:
             return False, 400
+        return task.task
 
     @staticmethod
     def insert_solution(data, status):
@@ -62,10 +51,15 @@ class PassTask(Task):
             event_task.save()
 
     def pass_task(self, responce):
+        """
+        Функция для сдачи флагов
+        собирает в себе вызовы всех методов, необходимые для сдачи флага
+        :param responce:
+        :return:
+        """
         self.row_data = json.loads(responce.body.decode('utf-8'))
         data = self.parse_data(self.row_data, names.PASS_TASK_FIELDS)
         set_types(data)
-        db_flag = self.get_flag(data)
-        checker, status = self.check_flag(db_flag, data[names.TASK_FLAG])
+        checker, status = self.check_flag(data)
         self.insert_solution(data, checker)
         return HttpResponse(status=status)
