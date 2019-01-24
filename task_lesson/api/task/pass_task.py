@@ -42,10 +42,7 @@ class PassTask(Task):
         event = data.get(names.EVENT)
         user = data.get(names.USER)
         event_task = get_event_task(event, data[names.TASK])
-        if get_status_event(event):
-            team_user = get_team_user_in_event(user, event)
-        else:
-            team_user = get_personal_team_user(user)
+        team_user = get_team_user_in_event(user, event)
         if event_task is not None and team_user is not None:
             event_task = SolutionModel(teamuser_id=team_user, eventtask_id=event_task, status=status, date=dt.now())
             event_task.save()

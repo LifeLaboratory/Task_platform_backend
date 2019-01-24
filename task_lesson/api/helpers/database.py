@@ -22,16 +22,6 @@ def get_team_user(user, no_team):
         return None
 
 
-def get_personal_team_user(user):
-    """
-    Функция получает личный teamuser пользователя
-    :param user: integer
-    :return:
-    """
-    team_user = get_team_user(user, True)
-    return team_user[0].teamuser
-
-
 def get_team_user_in_event(user, event):
     """
     Функция получает teamuser по user в event
@@ -41,7 +31,7 @@ def get_team_user_in_event(user, event):
     """
 
     try:
-        team_user = TeamUser.objects.get(user_id=user, eventteamuser__event=event, team__isnull=False).teamuser
+        team_user = TeamUser.objects.get(user_id=user, eventteamuser__event=event).teamuser
         return team_user
     except TeamUser.DoesNotExist:
         print("TeamUser not found")
