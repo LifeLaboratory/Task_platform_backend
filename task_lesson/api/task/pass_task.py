@@ -27,7 +27,6 @@ class PassTask(Task):
             return True, 200
         else:
             return False, 400
-        return task.task
 
     @staticmethod
     def insert_solution(data, status):
