@@ -4,6 +4,7 @@ import task_lesson.api.helpers.names as names
 from task_lesson.models import TeamUser, Role, Event, EventTeamUser
 from django.http import HttpResponse
 from django.core.cache import cache
+from uuid import uuid4
 
 class Session:
 
@@ -11,6 +12,13 @@ class Session:
     def check_request(cls, request):
         """Проверка входных данных на корректность"""
         return names.AllGood
+
+    @classmethod
+    def set_session(cls, user_id):
+        """Установка сессии для юзера"""
+        _uuid = str(uuid4())
+        cache.set(_uuid, user_id, timeout=names.TimeOutSession)
+        return _uuid
 
     @classmethod
     def get_user_id(cls, request):
