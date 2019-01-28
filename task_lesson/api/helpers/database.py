@@ -7,7 +7,7 @@ from task_lesson.models import Event
 
 def get_team_user(user, no_team):
     """
-    Функция получает teamuser
+    Функция возвращает teamuser
     no_team = True получить личный teamuser пользователя
     no_team = False получить список teamuser в которых пользователь - участник команды
     :param user: integer
@@ -24,7 +24,7 @@ def get_team_user(user, no_team):
 
 def get_team_user_in_event(user, event):
     """
-    Функция получает teamuser по user в event
+    Функция возвращает teamuser по user в event
     :param user: integer
     :param event: integer
     :return:
@@ -40,7 +40,7 @@ def get_team_user_in_event(user, event):
 
 def get_event_task(event, task):
     """
-    Функция получает event_task по event и task
+    Функция возвращает event_task по event и task
     :param event:
     :param task:
     :return:
@@ -55,7 +55,7 @@ def get_event_task(event, task):
 
 def get_event_team_user(event, team_user):
     """
-    Функция получает event_team_user по event и team_user
+    Функция возвращает event_team_user по event и team_user
     :param event:
     :param team_user:
     :return:
@@ -70,7 +70,7 @@ def get_event_team_user(event, team_user):
 
 def get_event_sponsor(event, sponsor):
     """
-    Функция получает event_team_sponsor по event и sponsor
+    Функция возвращает event_team_sponsor по event и sponsor
     :param event:
     :param sponsor:
     :return:
@@ -85,7 +85,7 @@ def get_event_sponsor(event, sponsor):
 
 def get_status_event(event):
     """
-    Функция получает status события
+    Функция возвращает status события
     true - командное
     false - личное
     :param event:
