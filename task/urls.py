@@ -20,6 +20,7 @@ from task_lesson.api.team.create import CreateTeam
 from task_lesson.api.team.edit import EditTeam
 from task_lesson.api.task.view_task import ViewTask
 from task_lesson.api.task.pass_task import PassTask
+from task_lesson.api.task.edit_task import EditTask
 from task_lesson.api.authorization.get_session import Authorization as Auth
 from task_lesson.api.event.show import ShowEvent
 from task_lesson.api.registration.registration_user import RegistrationUser as RegiUser
@@ -31,6 +32,7 @@ urlpatterns = [
     path('api/team/create/', CreateTeam().create),
     path('api/team/edit/', EditTeam().edit),
     path('api/task/create/', CreateTask().create_task),
+    path('api/task/edit/', EditTask().edit_task),
     path('api/task/view/', ViewTask().view_task),
     path('api/task/pass/', PassTask().pass_task),
     path('api/auth/', Auth.get_session),
