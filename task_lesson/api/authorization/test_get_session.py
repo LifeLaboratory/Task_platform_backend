@@ -2,7 +2,7 @@
 
 import json
 import unittest as ut
-import api.authorization.get_session as gt
+import api.authorization.authorization as gt
 import api.helpers.names as names
 import requests
 
@@ -46,7 +46,7 @@ class TestGetSession(ut.TestCase):
         answer = names.LoginError
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_not_login
-        response = gt.Authorization.get_session(request)
+        response = gt.Authorization.authorization(request)
 
         dict_r = json.loads(response)
         reference = {
@@ -61,7 +61,7 @@ class TestGetSession(ut.TestCase):
         request = ''
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_not_password
-        response = gt.Authorization.get_session(request)
+        response = gt.Authorization.authorization(request)
 
         dict_r = json.loads(response)
         reference = {
@@ -75,7 +75,7 @@ class TestGetSession(ut.TestCase):
         answer = names.RequestValueErorr
         request = ''
         gt.Authorization.check_request = self.fix_error_check
-        response = gt.Authorization.get_session(request)
+        response = gt.Authorization.authorization(request)
 
         dict_r = json.loads(response)
         reference = {
@@ -90,8 +90,8 @@ class TestGetSession(ut.TestCase):
         request = ''
         gt.Authorization.check_request = self.fix_good_check
         gt.Authorization.get_id_user = self.fix_have_id_user
-        gt.Authorization.take_session = self.fix_have_not_take_session
-        response = gt.Authorization.get_session(request)
+        gt.Authorization.set_session = self.fix_have_not_take_session
+        response = gt.Authorization.authorization(request)
 
         dict_r = json.loads(response)
         reference = {
@@ -108,6 +108,6 @@ class TestGetSession(ut.TestCase):
         # js_d = json.dumps(data)
         r = requests.post('http://127.0.0.1:8000/api/auth/', data=data)
 
-        # _uuid = gt.Authorization.take_session(self.user_id)
+        # _uuid = gt.Authorization.set_session(self.user_id)
         # self.assertIsInstance(_uuid, str, 'Некорректный тип сессии')
         return
