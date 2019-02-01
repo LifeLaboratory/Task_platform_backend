@@ -6,7 +6,7 @@ TASK_FLAG = 'flag'
 TASK_DESCRIPTION = 'description'
 TASK_AUTHOR = 'author'
 EVENT = 'event'
-USER = 'user_id'
+USER = 'user'
 ANSWER = 'answer'
 SESSION = 'session'
 EVENT_NAME = 'name'
@@ -47,6 +47,13 @@ VIEW_TASK_FIELDS = {
     TASK_CATEGORY
 }
 
+PASS_TASK_FIELDS = {
+    EVENT,
+    TASK,
+    TASK_FLAG,
+    USER
+}
+
 ADD_TEAM_FIELDS = {
     TEAM_NAME,
     TEAM_PICTURE
@@ -61,7 +68,8 @@ EDIT_TEAM_FIELDS = {
 INTEGER_FIELDS = {
     TASK_WEIGHT,
     USER,
-    EVENT
+    EVENT,
+    TASK
 }
 
 STRING_FIELDS = {
