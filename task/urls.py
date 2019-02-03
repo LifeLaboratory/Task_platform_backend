@@ -25,7 +25,7 @@ from task_lesson.api.registration.registration_user import RegistrationUser as R
 from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as EventRegiTeam
 from task_lesson.api.session.session import Session as Session
 from task_lesson.api.task.pass_task import PassTask
-from task_lesson.api.task.statistics import StatisticTask
+from task_lesson.api.task.statistics_task import StatisticTask
 
 
 urlpatterns = [
