@@ -25,7 +25,7 @@ from task_lesson.api.registration.registration_user import RegistrationUser as R
 from task_lesson.api.registration.event_registration_team import EventRegistrationTeam as EventRegiTeam
 from task_lesson.api.session.session import Session as Session
 from task_lesson.api.task.pass_task import PassTask
-from task_lesson.api.authorization.get_session import Authorization as Auth
+from task_lesson.api.task.statistics import StatisticTask
 
 
 urlpatterns = [
@@ -39,5 +39,6 @@ urlpatterns = [
     path('api/registration/user', RegiUser.registation),
     path('api/event/registration/team/', EventRegiTeam.registation),
     path('api/event/list/', ShowEvent().get_list_event),
-    path('api/get_user_id_by_session/', Session.get_user_id_by_session)
+    path('api/get_user_id_by_session/', Session.get_user_id_by_session),
+    path('api/task/statistic_task/', StatisticTask().statistic_sends),
 ]

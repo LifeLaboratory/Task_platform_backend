@@ -33,3 +33,12 @@ class TestTask(unittest.TestCase):
         }
         r = requests.post('http://127.0.0.1:8000/api/task/pass/', json=data)
         pass
+
+    def test_solutions_task(self):
+        data = {
+            names.TASK: 27,
+            names.EVENT: 1,
+
+        }
+        r = requests.post('http://127.0.0.1:8000/api/task/statistic_task/', json=data)
+        pass
