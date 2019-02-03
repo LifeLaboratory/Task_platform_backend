@@ -1,10 +1,9 @@
 import json
 import task_lesson.api.helpers.names as names
 
-from django.core.cache import cache
-from uuid import uuid4
 from task_lesson.models import User
 from django.http import HttpResponse
+from task_lesson.api.session.session import Session
 
 __author__ = 'rv.fomichev'
 
@@ -33,14 +32,12 @@ class Authorization:
         }
 
     @classmethod
-    def take_session(cls, user_id):
+    def set_session(cls, user_id):
         """Установка сессии для юзера"""
-        _uuid = str(uuid4())
-        cache.set(_uuid, user_id, timeout=names.TimeOutSession)
-        return _uuid
+        return Session.set_session(user_id)
 
     @classmethod
-    def get_session(cls, request):
+    def authorization(cls, request):
 
         session = None
         answer = cls.check_request(request)
@@ -49,7 +46,7 @@ class Authorization:
             user_dict = cls.get_id_user(request)
             user_id = user_dict[names.USER]
             if user_id:
-                session = cls.take_session(user_id)
+                session = cls.set_session(user_id)
                 if not session:
                     answer = names.ServerError
             else:
