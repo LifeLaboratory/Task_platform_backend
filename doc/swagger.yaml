@@ -1,0 +1,202 @@
+---
+swagger: "2.0"
+info:
+  description: API task platform
+  version: 1.0.0
+  title: API task platform
+  contact:
+    email: antonion2011@yandex.ru
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: taskplatform.jumpingcrab.com
+tags:
+- name: Пользователь
+  description: Работа с пользователями в системе
+- name: Событие
+  description: Работа с событиями в системе
+- name: Команда
+  description: Работа с командами в системе
+- name: Задание
+  description: Работа с заданиями в системе
+- name: Спонсоры
+  description: Работа со спонсорами в системе
+schemes:
+- https
+paths:
+  /api/user:
+    get:
+      tags:
+      - Пользователь
+      summary: Авторизация пользователя в системе
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchInventory
+      produces:
+      - application/json
+      parameters:
+      - name: login
+        in: query
+        description: Логин пользователя
+        required: false
+        type: string
+      - name: password
+        in: query
+        description: Пароль пользователя
+        required: false
+        type: string
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            $ref: '#/definitions/SessionItem'
+        500:
+          description: Не правильные логин или пароль
+    post:
+      tags:
+      - Пользователь
+      summary: Регистрация пользователя
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: user_register
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: requests
+        description: Запрос для регистрации
+        required: false
+        schema:
+          type: object
+          required:
+            - name
+            - login
+            - password
+          properties:
+            name:
+              required: false
+              type: string
+            login:
+              required: false
+              type: string
+            password:
+              required: false
+              type: string
+      responses:
+        200:
+          description: После регистрации пользователя, возвращается сессия пользователя и переход на главную страницу
+          schema:
+            $ref: '#/definitions/SessionItem'
+        500:
+          description: Не корректные данные
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    put:
+      tags:
+      - Пользователь
+      summary: Редактирование профиля пользователя
+      description: Присылаются только те поля, которые необходимо обновить
+      operationId: updateProfile
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: inventoryItem
+        description: Inventory item to add
+        required: false
+        schema:
+          type: object
+          required:
+            - name
+            - login
+            - password
+          properties:
+            name:
+              required: false
+              type: string
+            login:
+              required: false
+              type: string
+            password:
+              required: false
+              type: string
+      responses:
+        201:
+          description: Профиль обновлен
+          schema:
+            type: object
+        500:
+          description: invalid input, object invalid
+          schema:
+            $ref: '#/definitions/ErrorsList'
+
+definitions:
+  SessionItem:
+    type: object
+    required:
+    - session
+    properties:
+      session:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+  InventoryItem:
+    type: object
+    required:
+    - id
+    - manufacturer
+    - name
+    - releaseDate
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      name:
+        type: string
+        example: Widget Adapter
+      releaseDate:
+        type: string
+        format: date-time
+        example: 2016-08-29T09:12:33.001Z
+      manufacturer:
+        $ref: '#/definitions/Manufacturer'
+
+  Manufacturer:
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        example: ACME Corporation
+      homePage:
+        type: string
+        format: url
+        example: https://www.acme-corp.com
+      phone:
+        type: string
+        example: 408-867-5309
+  ErrorsList:
+    required:
+      - error
+    properties:
+      error:
+        type: object
+
+database:
+  User:
+    type: object
+    required:
+      - user
+    properties:
+      login:
+        type: string
