@@ -18,7 +18,14 @@ class CreateTask(Task):
         :param data:
         :return:
         """
-        task = TaskModel(**data)
+        task = TaskModel(
+            name=data[names.TASK_NAME],
+            category=data[names.TASK_CATEGORY],
+            weight=data[names.TASK_WEIGHT],
+            flag=data[names.TASK_FLAG],
+            description=data[names.TASK_DESCRIPTION],
+            user_id=data[names.USER]
+        )
         task.save()
         return task.task
 
@@ -42,12 +49,10 @@ class CreateTask(Task):
         :return:
         """
         self.row_data = json.loads(responce.body.decode('utf-8'))
-        data = self.parse_data(self.row_data, names.ADD_TASK_FIELDS)
+        data = self.parse_data(self.row_data, names.CREATE_TASK_FIELDS)
         set_types(data)
         task = self.insert_task(data)
         if task:
-            data = self.parse_data(self.row_data, names.EVENT_TASK_FIELDS)
-            set_types(data)
             answer = self.insert_event_task(data, task)
             return HttpResponse(json.dumps(answer))
         return HttpResponse({names.ANSWER: names.ERROR_ADD_TASK, names.SESSION: ''})
