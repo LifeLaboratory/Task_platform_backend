@@ -5,7 +5,8 @@ from task_lesson.models import Task as TaskModel
 from task_lesson.models import Solution as SolutionModel
 from task_lesson.api.helpers.checkers import set_types
 from task_lesson.api.task.task import Task
-from task_lesson.api.helpers.database import *
+from task_lesson.api.helpers.database import get_event_task
+from task_lesson.api.helpers.database import get_team_user_in_event
 from datetime import datetime as dt
 
 

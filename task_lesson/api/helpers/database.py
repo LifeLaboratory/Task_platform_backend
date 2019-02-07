@@ -1,8 +1,4 @@
-from task_lesson.models import EventSponsor
-from task_lesson.models import TeamUser
-from task_lesson.models import EventTask
-from task_lesson.models import EventTeamUser
-from task_lesson.models import Event
+from task_lesson.models import *
 
 
 def get_team_user(user, no_team):
@@ -22,6 +18,52 @@ def get_team_user(user, no_team):
         return None
 
 
+def get_team(team):
+    """
+    Функция по team возвращает данные о команде
+    :param team:
+    :return:
+    """
+    try:
+        team = Team.objects.get(team=team)
+        return team
+    except Team.DoesNotExist:
+        print("Team not found")
+        return None
+
+
+def get_user(user):
+    """
+    Функция по team возвращает данные о команде
+    :param team:
+    :return:
+    """
+    try:
+        user = User.objects.get(team=user)
+        return user
+    except User.DoesNotExist:
+        print("User not found")
+        return None
+
+
+def get_team_or_user(teamuser):
+    """
+    Функция по teamuser возвращает team или пользователя
+    :param teamuser:
+    :return:
+    """
+    try:
+        data = TeamUser.objects.get(teamuser=teamuser)
+        if data.team:
+            data = get_team(data.team_id)
+        else:
+            data = get_user(data.user_id)
+        return data
+    except TeamUser.DoesNotExist:
+        print("TeamUser not found")
+        return None
+
+
 def get_team_user_in_event(user, event):
     """
     Функция возвращает teamuser по user в event
@@ -29,7 +71,6 @@ def get_team_user_in_event(user, event):
     :param event: integer
     :return:
     """
-
     try:
         team_user = TeamUser.objects.get(user_id=user, eventteamuser__event=event).teamuser
         return team_user
